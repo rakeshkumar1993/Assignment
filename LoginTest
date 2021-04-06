@@ -1,0 +1,23 @@
+//Open the above link in your browser. Write test cases (cases must be complete in terms of assertions).
+
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+public class LoginUsingSelenium {
+    @Test public void login() { // TODO Auto-generated method stub 
+  System.setProperty("webdriver.chrome.driver", "path of driver"); 
+  WebDriver driver=new ChromeDriver(); driver.manage().window().maximize(); 
+  driver.get("https://cc.healthrecoverysolutions.com/login"); 
+
+  WebElement username=driver.findElement(By.id("username")); 
+  WebElement password=driver.findElement(By.id("password")); 
+  WebElement login=driver.findElement(By.xpath("//button[text()='Sign in']")); 
+  username.sendKeys("example@gmail.com"); password.sendKeys("password"); 
+  login.click(); String actualUrl="https://cc.healthrecoverysolutions.com/home"; 
+  String expectedUrl= driver.getCurrentUrl(); 
+  Assert.assertEquals(expectedUrl,actualUrl); }   }
