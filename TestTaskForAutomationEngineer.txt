@@ -1,0 +1,101 @@
+Test tasks for Automation Engineer
+Additional Information: BASE_URL for testing https://cc.healthrecoverysolutions.com/login
+1. What page element selectors do you know?
+Ans:  input, select, ul, li, radio, ancor tag, iframe, link, span, table, paragraph, video
+
+2. Rate your JS knowledge from 0 to 10
+Ans: 5
+
+3. Rate your Cypress knowledge from 0 to 10
+4. Use selectors to get a list of all admins
+<ul class="users_list">
+<li class="admin">one</li>
+<li class="user">two</li>
+<li class="admin">three</li>
+<li class="user">four</li>
+</ul>
+Ans:  xpath(“//ul[@class=’users_list’]/li[contains(@class,’admin’)]
+
+5. Use selectors to list all users by data attribute name="user"
+<ul class="users_list">
+<li class="admin">one</li>
+<li name="user"">two</li>
+<li class="admin">three</li>
+<li name="user">four</li>
+</ul>
+Ans:  xpath(“//ul[@class=’users_list’]/li[@name=’user’]”)
+
+6. Filter the list by color attribute. The condition is that you first get the complete list of elements and then
+filter on the attribute. You need to get a list of items with a red marker.
+<ul class="users_list">
+<li class="user" color=”red”>test1</li>
+<li class="user" color=”green”>test2</li>
+<li class="user" color=”red”>test3</li>
+<li class="user" color=”green”>test4</li>
+<li class="user" color=”red”>test5</li>
+<li class="user" color=”green”>test6</li>
+<li class="user" color=”green”>test7</li>
+<li class="user" color=”red”>test8</li>
+<li class="user" color=”green”>test9</li>
+<li class="user" color=”red”>test10</li>
+<li class="user" color=”green”>test11</li>
+</ul>
+
+Ans: xpath(“//ul[@class=’users_list’]/li[contains(@class,’user’)]
+List<WebElement> elements=driver.findElements(By.xpath("//ul[@class='users_list']/li[contains(@class,'user')]"));
+List<WebElement> filteredElements=new List<WebElements>();
+for(int i=0;i<elements.size();i++){
+	String listItem=elements.get(i).getAttribute("color");
+	if(listItem.equals(“red”){
+	filteredElements.add(elements.get(i));
+	}
+  
+7. What actions for elements do you know?
+Ans: click, sendKeys, doubleClick, dragAndDrop, keyUp, keyDown, moveToElement
+8. How to get an element using Cypress?
+9. How to work with select in Cypress?
+10. What actions can be applied to an element using Cypress?
+11. Does cypress support drag and drop?
+12. Does cypress support file uploads? How?
+13. Practical task[UI]
+Open the above link in your browser. Write test cases (cases must be complete in terms of assertions).
+Ans: 
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+public class LoginUsingSelenium {
+    @Test public void login() { // TODO Auto-generated method stub 
+  System.setProperty("webdriver.chrome.driver", "path of driver"); 
+  WebDriver driver=new ChromeDriver(); driver.manage().window().maximize(); 
+  driver.get("https://cc.healthrecoverysolutions.com/login"); 
+
+  WebElement username=driver.findElement(By.id("loginEmail")); 
+  WebElement password=driver.findElement(By.id("password")); 
+  WebElement login=driver.findElement(By.xpath("//button[text()='Sign in']")); 
+  username.sendKeys("example@gmail.com"); password.sendKeys("password"); 
+  login.click(); String actualUrl="https://cc.healthrecoverysolutions.com/home";  //Assumed url
+  String expectedUrl= driver.getCurrentUrl(); 
+  Assert.assertEquals(expectedUrl,actualUrl); }   }
+  
+  
+Implement these cases with Cypress and the Page Objects pattern. The weblink must be used with
+cypress.env.json
+● Add some scripts to package.json:
+1. Opening Cypress UI
+2. Running tests in a specific browser.
+● In on("before:browser:launch", (browser = {}, launchOptions) => {}); add additional launch options
+○ incognito
+○ fullscreen
+14. Practical task[API-> Rest-Assured]
+
+Write tests for API based on previously created cases. Tests can be written linearly. Add data models and
+assertions to your tests. Take base URL, base path, and endpoints from the browser console.
+In the ResponseSpecification, add a code status check and a content type check. Map the server response to
+the object.
+Ans: Refer below GitHub url
+https://github.com/rakeshkumar1993/Assignment.git
